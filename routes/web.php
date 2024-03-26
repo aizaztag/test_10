@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PermissinsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestController;
@@ -17,13 +18,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+
 Route::get('/', function () {
+    dd(phpinfo());
     $post = Post::find(1);
 
     return view('welcome');
 });
 
+Route::get('/blog', [BlogController::class, 'store']);
 Route::get('/download', [TestController::class, 'download']);
+Route::get('/bulk-upload', [TestController::class, 'bulkUpload']);
+
+Route::get('/exception', [TestController::class, 'exception']);
 
 
 Route::get('/permit', [PermissinsController::class, 'permit']);
